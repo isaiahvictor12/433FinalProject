@@ -1,12 +1,12 @@
 /* Global Styles */
 body {
-  background-color: #e0e0e0;
+  background-color: #f0f0f0;
   font-family: Arial, sans-serif;
 }
 
 /* Style the page header */
 header {
-  background-color: #4caf50;
+  background-color: #1c2331;
   color: #fff;
   padding: 1rem;
   text-align: center;
@@ -16,6 +16,7 @@ header {
 h1 {
   margin: 0;
   font-size: 3rem;
+  text-shadow: 2px 2px #000;
 }
 
 /* Style the container */
@@ -27,7 +28,8 @@ h1 {
   margin: 0 auto;
   padding: 2rem;
   background-color: #fff;
-  box-shadow: 0px 2px 5px #ccc;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 /* Style the charts */
@@ -39,20 +41,20 @@ canvas {
 /* Style the temperature chart */
 #temperatureChart {
   border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  box-shadow: 2px 2px 5px #ccc;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Style the light chart */
 #lightChart {
   border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  box-shadow: 2px 2px 5px #ccc;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Style the humidity chart */
 #humidityChart {
   border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  box-shadow: 2px 2px 5px #ccc;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
