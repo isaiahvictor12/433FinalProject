@@ -19,6 +19,16 @@ h1 {
   text-shadow: 2px 2px #000;
 }
 
+/* Style the chart title */
+h2 {
+  background-color: #1c2331;
+  color: #fff;
+  padding: 0.5rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
 /* Style the container */
 .container {
   display: flex;
@@ -39,22 +49,39 @@ canvas {
 }
 
 /* Style the temperature chart */
-#temperatureChart {
+.chart {
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  height: 400px;
 }
 
-/* Style the light chart */
-#lightChart {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+.chart-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Style the humidity chart */
-#humidityChart {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+.chart-tabs {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.chart-tabs button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.chart-tabs button.active {
+  background-color: #555;
+  color: #fff;
+}
+
+.chart-container {
+  width: 100%;
 }
