@@ -16,7 +16,7 @@ where = ["src"]  # ["."] by default
 include = ["sensornetwork*"]  # ["*"] by default
 
 [tool.setuptools.package-data]
-"sensornetwork.host.db" = ["*.sql"]
+"sensornetwork.db" = ["*.sql"]
 
 [tool.setuptools.dynamic]
 version = {attr = "sensornetwork.__version__"}

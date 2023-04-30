@@ -11,20 +11,26 @@ def main(script):
     conn = mysql.connector.connect(
         host=HOST_INFO[0],
         user=username,
-        password=password
+        password=password,
+        autocommit=True
     )
+    cursor = conn.cursor()
     with open(script, 'r') as f:
-        with conn.cursor() as cursor:
-            cursor.execute(f.read(), multi=True)
-    conn.commit()
+        result = cursor.execute(f.read(), multi=True)
+    results = cursor.fetchall()
+    print(result, results)
+    cursor.close()
+
 
 
 if __name__ == "__main__":
     if len(argv) > 1:
         mode = argv[1].casefold()[0]
         if mode == 'i':
+            print("Initializing db...")
             main(INIT_SCRIPT)
         elif mode == 'd':
+            print("Dropping db...")
             main(DROP_SCRIPT)
         else:
             raise RuntimeError(f"Invalid argument {argv[1]}")

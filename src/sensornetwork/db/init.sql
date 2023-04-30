@@ -20,22 +20,15 @@ CREATE TABLE IF NOT EXISTS sensornetwork.temperature_recording(
 -- Create user procedures for recording data
 CREATE PROCEDURE sensornetwork.record_temperature(IN recording DECIMAL(5, 2))
 BEGIN
+    DECLARE rec_id INT;
+    DECLARE val DECIMAL(5, 2) DEFAULT recording;
     START TRANSACTION;
 
-    DECLARE record_id INT;
-    DECLARE val DECIMAL(5, 2);
-    SET val = recording;
-
     IF ISNULL(recording) THEN
-        SET val = (
-            SELECT AVG(data_record.recording)
-                FROM sensornetwork.temperature_recording
-                JOIN sensornetwork.data_record 
-                    ON data_record.record_id == temperature_recording.record_id
-        );
-    END
-    INSERT INTO sensornetwork.data_record(recording, record_time) VALUES (val, NOW())
-    SET record_id = LAST_INSERT_ID();
-    INSERT INTO sensornetwork.temperature_recording(record_id) VALUES (record_id);
+        SET val = (SELECT AVG(data_record.recording) FROM sensornetwork.temperature_recording JOIN sensornetwork.data_record ON data_record.record_id = temperature_recording.record_id);
+    END IF;
+    INSERT INTO sensornetwork.data_record(recording, record_time) VALUES (val, NOW());
+    SET rec_id = LAST_INSERT_ID();
+    INSERT INTO sensornetwork.temperature_recording(record_id) VALUES (rec_id);
     COMMIT;
 END;
