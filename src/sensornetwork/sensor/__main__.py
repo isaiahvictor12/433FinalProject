@@ -1,13 +1,41 @@
 import asyncio
-from sensornetwork.sensor.ds18b20 import DS18B20
-from sensornetwork import HOST_INFO
-from sensornetwork.sensor import db_cursor, RECORD_DELAY
+from sensornetwork.sensor.sensors.ds18b20 import DS18B20
+from sensornetwork.sensor import connection, RECORD_DELAY
+
+
+def record_temperature(temp_sensor):
+    temperature = temp_sensor.celsius
+    with connection.cursor() as cursor:
+        query = "CALL record_temperature(%s);"
+        cursor.execute(query, (temperature, ))
+
+
+def record_light(light_sensor):
+    light = light_sensor.get_reading()
+    with connection.cursor() as cursor:
+        query = "CALL record_light(%s);"
+        cursor.execute(query, (light, ))
+
+
+def record_humidity(humidity_sensor):
+    humidity = humidity_sensor.get_reading()
+    with connection.cursor() as cursor:
+        query = "CALL record_humidity(%s);"
+        cursor.execute(query, (humidity, ))
 
 
 async def main():
-    temperature = 
+    temp_sensor = DS18B20()
+    light_sensor = None
+    humidity_sensor = None
 
-    await asnycio.sleep(RECORD_DELAY)
+    while True:
+
+        record_temperature(temp_sensor)
+        record_light(light_sensor)
+        record_humidity(humidity_sensor)
+
+        await asyncio.sleep(RECORD_DELAY)
 
 
 if __name__ == "__main__":

@@ -15,12 +15,12 @@ def main(script):
         autocommit=True
     )
     cursor = conn.cursor()
+    results = None
     with open(script, 'r') as f:
-        result = cursor.execute(f.read(), multi=True)
-    results = cursor.fetchall()
-    print(result, results)
+        results = cursor.execute(f.read(), multi=True)
+    for result in results:
+        print(result)
     cursor.close()
-
 
 
 if __name__ == "__main__":
