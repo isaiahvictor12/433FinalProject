@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sensornetwork"
+authors = [
+    {name = "Willow Ciesialka", email="wciesialka@gmail.com"}
+]
+requires-python = ">=3.10.11"
+description = "CSCI 43300 Final Project."
+dynamic = ["version", "readme", "dependencies"]
+
+[tool.setuptools.packages.find]
+where = ["src"]  # ["."] by default
+include = ["sensornetwork*"]  # ["*"] by default
+
+[tool.setuptools.dynamic]
+version = {attr = "sensornetwork.__version__"}
+readme = {file = ["README.md"]}
+dependencies = {file = ["requirements.txt"]}
