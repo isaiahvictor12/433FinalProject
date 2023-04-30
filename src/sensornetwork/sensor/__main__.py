@@ -4,7 +4,8 @@ from sensornetwork import HOST_INFO
 
 
 async def main(host: str, port: int):
-    pass
+    
+    await asnycio.sleep(0.1)
 
 
 if __name__ == "__main__":
