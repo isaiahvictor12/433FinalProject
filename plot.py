@@ -83,5 +83,5 @@ html = f"""
 """
 
 # Write HTML code to file
-with open('index.html', 'w') as f:
+with open('plot.html', 'w') as f:
     f.write(html)
