@@ -17,6 +17,8 @@ include = ["sensornetwork*"]  # ["*"] by default
 
 [tool.setuptools.package-data]
 "sensornetwork.db" = ["*.sql"]
+"sensornetwork.web.static" = ["*.*"]
+"sensornetwork.web.templates" = ["*.*"]
 
 [tool.setuptools.dynamic]
 version = {attr = "sensornetwork.__version__"}
