@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <title>433 Final Project</title>
+    <script>
+    var myData = {{data}};
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="style.css" />
+    <script src="/static/script.js"></script>
+    <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
     <header>

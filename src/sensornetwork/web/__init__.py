@@ -2,6 +2,7 @@ from sensornetwork import HOST_INFO
 from sensornetwork.db import DATABASE
 from sensornetwork.web.templates import TEMPLATES
 from bottle import template, route
+from JSON import dumps
 import mysql.connector
 
 
@@ -39,4 +40,4 @@ def index():
         execution_result = cursor.execute(light_q)
         data['light'] = cursor.fetch_all()
     file = TEMPLATES['index.tpl']
-    return template(file, data=data)
+    return template(file, data=dumps(data))
