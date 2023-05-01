@@ -9,7 +9,7 @@ y_temp = [10, 20, 30, 25, 20]
 plt.plot(x_temp, y_temp)
 plt.title('Temperature')
 plt.xlabel('Time')
-plt.ylabel('Temperature (C)')
+plt.ylabel('Temperature')
 
 buffer_temp = BytesIO()
 plt.savefig(buffer_temp, format='png')
@@ -25,7 +25,7 @@ plt.clf() # clear previous plot
 plt.plot(x_light, y_light)
 plt.title('Light')
 plt.xlabel('Time')
-plt.ylabel('Light (lux)')
+plt.ylabel('Light')
 
 buffer_light = BytesIO()
 plt.savefig(buffer_light, format='png')
@@ -41,7 +41,7 @@ plt.clf() # clear previous plot
 plt.plot(x_humidity, y_humidity)
 plt.title('Humidity')
 plt.xlabel('Time')
-plt.ylabel('Humidity (%)')
+plt.ylabel('Humidity')
 
 buffer_humidity = BytesIO()
 plt.savefig(buffer_humidity, format='png')
