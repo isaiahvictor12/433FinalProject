@@ -6,7 +6,9 @@
 
 ### PREREQUISITES
 
-- Sensor requires GPIO support. Host machine must be running a MySQL instance.
+- Sensor requires GPIO support.
+- Host machine must be running a MySQL instance. (`sudo apt-get install mysql-server`)
+- Python Module requirements listed in [requirements.txt](requirements.txt)
 
 ## RUNNING
 
