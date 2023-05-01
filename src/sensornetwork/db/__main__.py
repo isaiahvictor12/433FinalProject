@@ -6,8 +6,8 @@ from sensornetwork.db import INIT_SCRIPT, DROP_SCRIPT
 
 
 def main(script):
-    username = input("Root Username:")
-    password = getpass("Root Password:")
+    username = input("dbcreator Username:")
+    password = getpass("dbcreator Password:")
     conn = mysql.connector.connect(
         host=HOST_INFO[0],
         user=username,

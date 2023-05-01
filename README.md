@@ -8,6 +8,7 @@
 
 - Sensor requires GPIO support.
 - Host machine must be running a MySQL instance. (`sudo apt-get install mysql-server`)
+    - (It is recommended you create a db_creator user)
 - Python Module requirements listed in [requirements.txt](requirements.txt)
 
 ## RUNNING
