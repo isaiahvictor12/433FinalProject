@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <title>433 Final Project</title>
     <script>
-    var myData = {{data}};
+    var s = "{{data}}".replace(/\&quot\;/g, "\"");
+    var myData = JSON.parse(s);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/static/script.js"></script>

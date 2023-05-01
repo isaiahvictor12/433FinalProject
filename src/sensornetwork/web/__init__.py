@@ -2,7 +2,7 @@ from sensornetwork import HOST_INFO
 from sensornetwork.db import DATABASE
 from sensornetwork.web.templates import TEMPLATES
 from bottle import template, route
-from JSON import dumps
+from json import dumps
 import mysql.connector
 
 
@@ -20,24 +20,24 @@ connection = mysql.connector.connect(
 @route('/')
 def index():
     data = {}
-    with connection.cursor() as cursor:
+    with connection.cursor(buffered=True) as cursor:
         temperature_q = '''SELECT data_record.recording "Y", data_record.record_time "X" 
                            FROM temperature_recording JOIN data_record
                            ON data_record.record_id = temperature_recording.record_id
                            ORDER BY data_record.record_time DESC;'''
         execution_result = cursor.execute(temperature_q)
-        data['temperature'] = cursor.fetch_all()
+        data['temperature'] = {str(row[1]): float(row[0]) for row in cursor.fetchall()}
         humidity_q = '''SELECT data_record.recording "Y", data_record.record_time "X" 
                         FROM humidity_recording JOIN data_record
                         ON data_record.record_id = humidity_recording.record_id
                         ORDER BY data_record.record_time DESC;'''
         execution_result = cursor.execute(humidity_q)
-        data['humidity'] = cursor.fetch_all()
+        data['humidity'] = {str(row[1]): float(row[0]) for row in cursor.fetchall()}
         light_q = '''SELECT data_record.recording "Y", data_record.record_time "X" 
                      FROM light_recording JOIN data_record
                      ON data_record.record_id = light_recording.record_id
                      ORDER BY data_record.record_time DESC;'''
         execution_result = cursor.execute(light_q)
-        data['light'] = cursor.fetch_all()
+        data['light'] = {str(row[1]): float(row[0]) for row in cursor.fetchall()}
     file = TEMPLATES['index.tpl']
-    return template(file, data=dumps(data))
+    return template(file.read_text(encoding='utf-8'), data=dumps(data), safe=True)

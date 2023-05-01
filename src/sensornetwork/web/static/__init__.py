@@ -23,6 +23,6 @@ for key in tuple(STATIC_FILES.keys()):
 def serve_static_files(path):
     stream = STATIC_FILES.get(path)
     if stream:
-        return static_file(stream)
+        return static_file(stream.read_bytes())
     else:
         return 404
