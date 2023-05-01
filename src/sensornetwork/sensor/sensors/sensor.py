@@ -5,7 +5,7 @@ from time import sleep
 
 class Sensor(ABC):
 
-    def __init__(self, polling_time: int):
+    def __init__(self, polling_time: float):
         self.polling_time = polling_time
         self._cached_reading = None
         self._thread = threading.Thread(target=self._thread_target)

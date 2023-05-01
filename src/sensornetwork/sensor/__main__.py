@@ -1,5 +1,7 @@
 import asyncio
 from sensornetwork.sensor.sensors.ds18b20 import DS18B20
+from sensornetwork.sensor.sensors.humidity_sensor import HumiditySensor
+from sensornetwork.sensor.sensors.light_sensor import LightSensor
 from sensornetwork.sensor import connection, RECORD_DELAY
 
 
@@ -26,8 +28,8 @@ def record_humidity(humidity_sensor):
 
 async def main():
     temp_sensor = DS18B20()
-    light_sensor = None
-    humidity_sensor = None
+    light_sensor = LightSensor(19)
+    humidity_sensor = HumiditySensor(22)
 
     while True:
 
