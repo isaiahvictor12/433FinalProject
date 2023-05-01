@@ -8,7 +8,7 @@ if __name__ == "__main__":
 _files = resources.files(__name__)
 TEMPLATES = {
                 child.name: child
-                if child.name.endswith('tpl') else None
+                if child.name.endswith('.tpl') else None
                 for child in _files.iterdir()
             }
 

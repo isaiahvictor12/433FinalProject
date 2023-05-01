@@ -8,7 +8,6 @@
     var myData = JSON.parse(s);
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="/static/script.js"></script>
     <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
@@ -70,6 +69,6 @@
         </div>
       </div>
     </div>
-    <script src="script.js"></script>
+    <script src="/static/script.js"></script>
   </body>
 </html>

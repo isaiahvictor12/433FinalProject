@@ -1,7 +1,8 @@
 from sensornetwork import HOST_INFO
 from sensornetwork.db import DATABASE
+from sensornetwork.web.static import STATIC_FILES
 from sensornetwork.web.templates import TEMPLATES
-from bottle import template, route
+from bottle import template, route, static_file
 from json import dumps
 import mysql.connector
 
@@ -15,6 +16,16 @@ connection = mysql.connector.connect(
     user=_USERNAME,
     database=DATABASE
 )
+
+# Static files
+@route('/static/<path:path>')
+def serve_static_files(path):
+    print(f"Serving static file ${path}")
+    stream = STATIC_FILES.get(path)
+    if stream:
+        return stream.read_bytes()
+    else:
+        return 404
 
 # Home Page25
 @route('/')

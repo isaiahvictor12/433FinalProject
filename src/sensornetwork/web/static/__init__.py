@@ -1,6 +1,4 @@
 import importlib.resources as resources
-from bottle import route, static_file
-
 
 __version__ = "1.0.0"
 
@@ -10,19 +8,10 @@ if __name__ == "__main__":
 _files = resources.files(__name__)
 STATIC_FILES = {
                     child.name: child
-                    if not child.name.endswith('py') else None
+                    if not (child.name.endswith('.py') or child.name[0] == '.' or child.name[0] == '_') else None
                     for child in _files.iterdir()
                 }
 
 for key in tuple(STATIC_FILES.keys()):
     if STATIC_FILES[key] is None:
         STATIC_FILES.pop(key)
-
-
-@route('/static/<path:path>')
-def serve_static_files(path):
-    stream = STATIC_FILES.get(path)
-    if stream:
-        return static_file(stream.read_bytes())
-    else:
-        return 404
