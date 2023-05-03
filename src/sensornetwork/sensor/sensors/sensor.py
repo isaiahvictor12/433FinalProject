@@ -8,9 +8,9 @@ class Sensor(ABC):
     def __init__(self, polling_time: float):
         self.polling_time = polling_time
         self._cached_reading = None
+        self._collecting = True
         self._thread = threading.Thread(target=self._thread_target)
         self._thread.start()
-        self._collecting = True
         self._cache_lock = threading.Lock()
 
     @abstractmethod
@@ -28,3 +28,10 @@ class Sensor(ABC):
             if not self._thread.is_alive():
                 self._thread.start()
         return self._cached_reading
+
+    def stop(self):
+        self._collecting = False
+        self._thread.join()
+
+    def __del__(self):
+        self.stop()
