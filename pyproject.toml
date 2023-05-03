@@ -7,7 +7,7 @@ name = "sensornetwork"
 authors = [
     {name = "Willow Ciesialka", email="wciesialka@gmail.com"}
 ]
-requires-python = ">=3.10.11"
+requires-python = ">=3.9.2"
 description = "CSCI 43300 Final Project."
 dynamic = ["version", "readme", "dependencies"]
 
