@@ -37,18 +37,27 @@ def index():
                            ON data_record.record_id = temperature_recording.record_id
                            ORDER BY data_record.record_time DESC;'''
         execution_result = cursor.execute(temperature_q)
-        data['temperature'] = {str(row[1]): float(row[0]) for row in cursor.fetchall()}
+        results = [row for row in cursor.fetchall()]
+        labels = [row[1].strftime('%Y-%m-%d %H:%M:%S') for row in results]
+        data['labels'] = labels
+        y = [f"{row[0]:.2f}" for row in results]
+        data['temperature'] = y.copy()
         humidity_q = '''SELECT data_record.recording "Y", data_record.record_time "X" 
                         FROM humidity_recording JOIN data_record
                         ON data_record.record_id = humidity_recording.record_id
                         ORDER BY data_record.record_time DESC;'''
         execution_result = cursor.execute(humidity_q)
-        data['humidity'] = {str(row[1]): float(row[0]) for row in cursor.fetchall()}
+        results = [row for row in cursor.fetchall()]
+        y = [f"{row[0]:.2f}" for row in results]
+        data['humidity'] = y.copy()
         light_q = '''SELECT data_record.recording "Y", data_record.record_time "X" 
                      FROM light_recording JOIN data_record
                      ON data_record.record_id = light_recording.record_id
                      ORDER BY data_record.record_time DESC;'''
         execution_result = cursor.execute(light_q)
-        data['light'] = {str(row[1]): float(row[0]) for row in cursor.fetchall()}
+        results = [row for row in cursor.fetchall()]
+        y = [f"{row[0]:.2f}" for row in results]
+        data['light'] = y.copy()
+
     file = TEMPLATES['index.tpl']
     return template(file.read_text(encoding='utf-8'), data=dumps(data), safe=True)
