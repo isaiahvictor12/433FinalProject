@@ -6,7 +6,7 @@ from sensornetwork.sensor import connection, RECORD_DELAY
 
 
 def record_temperature(temp_sensor):
-    temperature = temp_sensor.celsius
+    temperature = temp_sensor.get_reading()
     with connection.cursor() as cursor:
         query = "CALL record_temperature(%s);"
         cursor.execute(query, (temperature, ))
