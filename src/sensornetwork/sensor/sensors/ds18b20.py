@@ -36,7 +36,10 @@ if not (gpio_status and therm_status):
     ))
 
 COMMAND_REGEX: re.Pattern = re.compile(r"t=(\d+)")
-
+# This is where the sensors will be
+base_dir = "/sys/bus/w1/devices/"
+device_folder = glob(base_dir + "28*")[count]
+device_file = device_folder + "/w1_slave"
 
 class DS18B20(Sensor):
     """Wrapper for the DS18B20 Temperature Sensor."""
@@ -48,11 +51,6 @@ class DS18B20(Sensor):
     def __init__(self, count: int = 0):
         super().__init__(DS18B20.MAX_DELAY)
 
-        # This is where the sensors will be
-        base_dir = "/sys/bus/w1/devices/"
-        device_folder = glob(base_dir + "28*")[count]
-        self._device_file = device_folder + "/w1_slave"
-
     def _read_raw(self) -> str:
         """Probe the sensor and return the result. If the sensor has been
         probed too recently, return a cached result.
@@ -61,7 +59,7 @@ class DS18B20(Sensor):
         :rtype: str
         """
         result: str = None
-        with open(self._device_file, "r") as f:
+        with open(device_file, "r") as f:
             result = " ".join(f.readlines())
         return result
 
