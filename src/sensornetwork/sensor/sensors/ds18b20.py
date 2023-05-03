@@ -38,7 +38,7 @@ if not (gpio_status and therm_status):
 COMMAND_REGEX: re.Pattern = re.compile(r"t=(\d+)")
 # This is where the sensors will be
 base_dir = "/sys/bus/w1/devices/"
-device_folder = glob(base_dir + "28*")[count]
+device_folder = glob(base_dir + "28*")[0]
 device_file = device_folder + "/w1_slave"
 
 class DS18B20(Sensor):
@@ -48,7 +48,7 @@ class DS18B20(Sensor):
     # https://www.analog.com/media/en/technical-documentation/data-sheets/DS18B20.pdf
     MAX_DELAY: float = 1_000 / 750
 
-    def __init__(self, count: int = 0):
+    def __init__(self):
         super().__init__(DS18B20.MAX_DELAY)
 
     def _read_raw(self) -> str:
